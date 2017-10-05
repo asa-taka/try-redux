@@ -1,17 +1,16 @@
 const { createStore } = require('redux')
 
-const { auth } = require('./reducers')
-const actions = require('./actions')
+const auth = require('./auth')
 
-const store = createStore(auth)
+const store = createStore(auth.reducer)
 const log = () => console.log(store.getState())
 log()
 
-store.dispatch(actions.auth('asa-taka'))
+store.dispatch(auth.auth('asa-taka'))
 log()
 
-store.dispatch(actions.unauth())
+store.dispatch(auth.unauth())
 log()
 
-store.dispatch(actions.auth('my-name'))
+store.dispatch(auth.auth('my-name'))
 log()
