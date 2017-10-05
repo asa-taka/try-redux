@@ -1,22 +1,16 @@
-const initialState = {
+const { Map } = require('immutable')
+
+const initialState = Map({
   user: undefined,
   login: false,
-}
+})
 
 const authReducers = {
   AUTH: (state, { user }) => {
-    return {
-      ...state,
-      user,
-      login: true,
-    }
+    return state.merge({ user, login: true })
   },
-  UNAUTH: (state, { user }) => {
-    return {
-      ...state,
-      user,
-      login: false,
-    }
+  UNAUTH: (state) => {
+    return state.merge({ user: undefined, login: false })
   },
 }
 
