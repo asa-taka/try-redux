@@ -6,7 +6,7 @@ const initialState = Map({
 })
 
 const authReducers = {
-  AUTH: (state, { user }) => {
+  AUTH: (state, { payload: { user } }) => {
     return state.merge({ user, login: true })
   },
   UNAUTH: (state) => {

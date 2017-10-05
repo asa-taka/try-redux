@@ -1,7 +1,7 @@
 const auth = user => {
   return {
     type: 'AUTH',
-    user,
+    payload: { user },
   }
 }
 
