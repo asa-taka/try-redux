@@ -1,14 +1,9 @@
-const { createStore, combineReducers } = require('redux')
-
+const createStore = require('./store')
 const auth = require('./auth')
 const config = require('./config')
 
-const reducer = combineReducers({
-  auth: auth.reducer,
-  config: config.reducer,
-})
+const store = createStore()
 
-const store = createStore(reducer)
 const log = () => console.log(store.getState())
 log()
 
