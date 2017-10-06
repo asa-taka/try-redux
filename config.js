@@ -1,16 +1,12 @@
 const { Map } = require('immutable')
+const {
+  createAction, handleActions, combineActions,
+} = require('redux-actions')
 
 // action creators
 
-const set = (key, value) => {
-  const payload = { key, value }
-  return { type: 'SET', payload }
-}
-
-const unset = (key) => {
-  const payload = { key }
-  return { type: 'UNSET', payload }
-}
+const set = createAction('SET', (key, value) => ({ key, value }))
+const unset = createAction('UNSET')
 
 const actions = {
   set, unset,
@@ -18,21 +14,16 @@ const actions = {
 
 // reducer
 
-const initialState = Map()
+const defaultState = Map()
 
-const reducers = {
-  SET: (state, { payload: { key, value } }) => {
+const reducer = handleActions({
+  [set]: (state, { payload: { key, value }}) => {
     return state.set(key, value)
   },
-  UNSET: (state, { payload: { key } }) => {
+  [unset]: (state, { payload: key }) => {
     return state.delete(key)
-  },
-}
-
-const reducer = (state = initialState, action) => {
-  const r = reducers[action.type]
-  return r ? r(state, action) : state
-}
+  }
+}, defaultState)
 
 module.exports = {
   reducer, ...actions,
