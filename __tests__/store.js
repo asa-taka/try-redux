@@ -10,13 +10,16 @@ describe('store', () => {
 
       const store = createStore()
       const state = () => store.getState()
+      console.log(state())
 
       store.dispatch(auth.auth('my-name'))
-      expect(state().auth.get('user')).toEqual('my-name')
-      expect(state().auth.get('login')).toEqual(true)
+      expect(state().auth.user).toEqual('my-name')
+      expect(state().auth.login).toEqual(true)
+      console.log(state())
 
       store.dispatch(auth.unauth())
-      expect(state().auth.get('user')).toBeUndefined()
+      expect(state().auth.user).toBeUndefined()
+      console.log(state())
     })
   })
 

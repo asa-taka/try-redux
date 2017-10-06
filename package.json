@@ -6,7 +6,8 @@
   "dependencies": {
     "immutable": "^3.8.2",
     "jest": "^21.2.1",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-actions": "^2.2.1"
   },
   "devDependencies": {},
   "scripts": {
