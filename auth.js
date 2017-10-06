@@ -1,16 +1,13 @@
 const { Map } = require('immutable')
 const {
-  createAction, handleActions, combineActions,
+  createActions, handleActions, combineActions,
 } = require('redux-actions')
 
 // action creators
 
-const auth = createAction('AUTH')
-const unauth = createAction('UNAUTH')
+const identityActions = ['AUTH', 'UNAUTH']
 
-const actions = {
-  auth, unauth,
-}
+const actions = createActions({}, ...identityActions)
 
 // reducer
 
@@ -20,11 +17,11 @@ const defaultState = Map({
 })
 
 const reducer = handleActions({
-  [auth]: (state, { payload: user }) => state.merge({
+  [actions.auth]: (state, { payload: user }) => state.merge({
     user,
     login: true,
   }),
-  [unauth]: (state) => state.merge({
+  [actions.unauth]: (state) => state.merge({
     user: undefined,
     login: false,
   }),
